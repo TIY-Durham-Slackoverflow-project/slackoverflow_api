@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def login
     user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
 
