@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate, only: [:update]
 
   def create
     @user = User.new(user_params)
@@ -29,15 +30,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
-      render status: :accepted
+    if @user == current_user
+      @user.update(user_params)
+      if @user.save
+        render status: :accepted
+      else
+        render json: {
+          errors: @user.errors
+        }, status: :bad_request
+      end
     else
-      render json: {
-        errors: @user.errors
-      }, status: :bad_request
+      render json: {error: "You are not authorized to update this user"}, status: :unauthorized
     end
-
   end
 
   private

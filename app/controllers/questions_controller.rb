@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate, only: [:create, :update, :delete]
+  before_action :authenticate, only: [:create, :update, :destroy]
 
   def index
     @questions = Question.all
@@ -16,14 +16,22 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    @question.update!(question_params)
-    render :show
+    if @question.user == current_user
+      @question.update!(question_params)
+      render :show
+    else
+      render json: {error: "You are not authorized to update this question"}, status: :unauthorized
+    end
   end
 
   def destroy
     @question = Question.find(params[:id])
-    @question.destroy
-    render json: {deleted: true}
+    if @question.user == current_user
+      @question.destroy
+      render json: {deleted: true}
+    else
+      render json: {error: "You are not authorized to delete this question"}, status: :unauthorized
+    end
   end
 
   private
