@@ -11,7 +11,14 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.create(question_params)
-    render :show, status: :created
+    @question.user = current_user
+    if @question.save
+      render status: :created
+    else
+      render json: {
+        errors: @question.errors
+      }, status: :bad_request
+    end
   end
 
   def update
