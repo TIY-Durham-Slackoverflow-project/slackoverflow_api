@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate, only: [:create, :update, :destroy]
+  # before_action :count_votes, only: [:show]
 
   def index
     @questions = Question.all
