@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate, only: [:update]
+  # before_action :get_questions
 
   def create
     @user = User.new(user_params)
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    render :show
   end
 
   def login
@@ -26,6 +28,9 @@ class UsersController < ApplicationController
     else
       render json: {token: user.token}
     end
+  end
+
+  def logout
   end
 
   def update
@@ -46,8 +51,13 @@ class UsersController < ApplicationController
 
   private
 
+  # def get_questions
+  #   @user = User.find(params[:id])
+  #   @user.questions = Question.where("@user.id = #{params[:id]}")
+  # end
+
   def user_params
-    params.require(:user).permit(:username, :password, :avatar, :bio_text, :questions_asked_num, :questions_answered_num)
+    params.require(:user).permit(:username, :password, :avatar, :bio_text, :questions_asked_num, :questions_answered_num, :avatar_big)
   end
 
 end

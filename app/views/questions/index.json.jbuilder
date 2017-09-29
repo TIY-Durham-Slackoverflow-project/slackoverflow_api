@@ -4,7 +4,7 @@ json.questions @questions do |question|
   json.title question.title
   json.body question.body
   json.user question.user
-  json.votes question.votes
+  # json.votes question.votes
   json.views question.views
   json.answers_num question.answers_num
   json.created_at question.created_at
