@@ -15,7 +15,7 @@ json.questions @questions do |question|
       json.answer_body answer.body
       json.validated answer.validated
       json.answer_user answer.user
-      json.votes_num answer.answer_num
+      json.votes_num answer.votes_num
       if answer.code
         json.code answer.code
       end
