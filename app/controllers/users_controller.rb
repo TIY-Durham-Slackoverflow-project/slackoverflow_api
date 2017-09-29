@@ -30,6 +30,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+  end
+
   def update
     @user = User.find(params[:id])
     if @user == current_user
