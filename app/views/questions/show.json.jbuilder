@@ -4,7 +4,7 @@ json.question do
   json.title @question.title
   json.body @question.body
   json.user @question.user
-  json.votes @question.votes
+  # json.votes @question.votes
   json.views @question.views
   json.tags @question.tags
   json.answers_num @question.answers_num
@@ -16,7 +16,7 @@ json.question do
     if answer.code
       json.code answer.code
     end
-    json.answer_votes answer.votes
+    # json.answer_votes answer.votes
     json.answer_views answer.views
   end
 end
