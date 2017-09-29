@@ -11,11 +11,13 @@ json.user do
     json.questions @user.questions do |question|
       json.title question.title
       json.quest_url question_url(question)
+      json.votes_num question.votes_num
     end
   end
   if @user.answers
     json.answers @user.answers do |answer|
       json.body answer.body
+      json.votes_num answer.votes_num
     end
   end
 end

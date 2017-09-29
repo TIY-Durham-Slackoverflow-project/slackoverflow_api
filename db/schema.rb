@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929170653) do
+ActiveRecord::Schema.define(version: 20170929191729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170929170653) do
     t.text "body", null: false
     t.boolean "validated", default: false
     t.text "code"
-    t.integer "votes", default: 0
+    t.integer "votes_num", default: 0
     t.integer "views", default: 0
     t.bigint "question_id"
     t.bigint "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170929170653) do
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.integer "votes", default: 0
+    t.integer "votes_num", default: 0
     t.integer "views", default: 0
     t.integer "answers_num", default: 0
     t.text "tags"
