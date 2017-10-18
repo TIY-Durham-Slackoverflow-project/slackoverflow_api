@@ -3,7 +3,7 @@ json.questions @questions do |question|
   json.url question_url(question)
   json.title question.title
   json.body question.body
-  json.user question.user
+  json.author question.user.username
   json.votes_num question.votes_num
   json.votes question.votes
   json.views question.views
@@ -14,7 +14,7 @@ json.questions @questions do |question|
     json.answers question.answers do |answer|
       json.answer_body answer.body
       json.validated answer.validated
-      json.answer_user answer.user
+      json.answer_user answer.user.username
       json.votes_num answer.votes_num
       if answer.code
         json.code answer.code

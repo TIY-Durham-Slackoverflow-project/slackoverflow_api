@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :authenticate, only: [:update]
-  # before_action :get_questions
 
   def create
     @user = User.new(user_params)
@@ -50,11 +49,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  # def get_questions
-  #   @user = User.find(params[:id])
-  #   @user.questions = Question.where("@user.id = #{params[:id]}")
-  # end
 
   def user_params
     params.require(:user).permit(:username, :password, :avatar, :bio_text, :questions_asked_num, :questions_answered_num, :avatar_big)
